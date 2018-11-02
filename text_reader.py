@@ -18,21 +18,44 @@ def at_least():
                 if len(word) >= 20:
                     print(word)
                     
-def has_no_e():
+def has_no_e(word):
+    if 'e' in word.lower():
+        return False
+    else:
+        return True
+                
+def no_e():
     words = 0
     count_no_e = 0
     with open("words.txt") as file:
         for line in file:
             for word in line.strip().split():
                 words += 1
-                if 'e' in word.lower():
-                    count_no_e += 0
-                else:
+                if has_no_e(word):
                     count_no_e += 1
-        print(float((count_no_e / words) * 100))
+    p = float(count_no_e / words)
+    print(f"{p * 100 :.3f}%")
+
+def avoids(word, forbid_let):
+    if forbid_let not in word.lower():
+        return True
+    else:
+        return False
+    
+    
+def count_avoids():
+    count = 0
+    forbid_let = input(str("What are the forbidden letters?\n> "))
+    with open("words.txt") as file:
+        for line in file:
+            for word in line.strip().split():
+                if avoids(word, forbid_let) is False:
+                    count += 1
+    print(count)
 
 if __name__ == "__main__":
     #read_file()
     #at_least()
-    has_no_e()
+    #no_e()
+    count_avoids()#aeiou = 107
     
