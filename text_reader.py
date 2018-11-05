@@ -37,10 +37,12 @@ def no_e():
     print(f"{p * 100 :.3f}%")
 
 def avoids(word, forbid_let):
-    if forbid_let not in word.lower():
-        return True
-    else:
-        return False
+    for letter in word:
+        for ele in forbid_let:
+            if forbid_let not in word.lower():
+                return True
+            else:
+                return False
     
     
 def count_avoids():
@@ -49,13 +51,38 @@ def count_avoids():
     with open("words.txt") as file:
         for line in file:
             for word in line.strip().split():
-                if avoids(word, forbid_let) is False:
+                if avoids(word, forbid_let) == True:
                     count += 1
     print(count)
+    
+def uses_only(word,letters):
+    '''
+    >>> uses_only("aa","aa")
+    True
+    
+    >>> uses_only("aah","ab")
+    False
+    '''
+    for letter in word:
+        for ele in letters:
+            if letters in word.lower():
+                return True
+            else:
+                return False
+    
+def words_with_only():
+    letters = input(str("Type in letters to find a word only conatining them:\n> "))
+    with open("words.txt") as file:
+        for line in file:
+            for word in line.strip().split():
+                if uses_only(word,letters) == True:
+                    print(word)
 
 if __name__ == "__main__":
+    #import doctest
+    #doctest.testmod()
     #read_file()
     #at_least()
     #no_e()
-    count_avoids()#aeiou = 107
-    
+    #count_avoids()
+    words_with_only()
