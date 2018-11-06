@@ -39,7 +39,7 @@ def no_e():
 def avoids(word, forbid_let):
     for letter in word:
         for ele in forbid_let:
-            if forbid_let not in word.lower():
+            if ele not in word.lower():
                 return True
             else:
                 return False
@@ -84,5 +84,5 @@ if __name__ == "__main__":
     #read_file()
     #at_least()
     #no_e()
-    #count_avoids()
-    words_with_only()
+    count_avoids()
+    #words_with_only()
